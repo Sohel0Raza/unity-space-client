@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+body {
+  font-family: "Lato", sans-serif;
+}
+.btn-primary {
+  @apply border-0 bg-[#2d545e] py-2 active:scale-90 rounded-sm hover:text-gray-400 shadow-[#12343b] shadow-inner hover:bg-[#1f424b] hover:transition-all hover:duration-500 hover:ease-linear;
+}
+.myInput {
+  @apply border-0 outline-0 p-2 focus:border-[1px] focus:border-[#000] focus:shadow-none shadow-inner shadow-black rounded-sm;
+}
