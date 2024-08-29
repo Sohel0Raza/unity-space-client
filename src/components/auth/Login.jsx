@@ -3,7 +3,7 @@ import logo from "./../../../public/logo.png";
 const Login = () => {
   return (
     <>
-      <div className="hero bg-base-200 min-h-screen">
+      <div className="hero bg-[#F2F4F7] min-h-screen">
         <div className="hero-content w-full md:w-8/12 flex-col md:flex-row justify-around">
           <div className="md:w-1/2 text-center">
             <div className="h-40 w-40 mx-auto">
@@ -14,7 +14,7 @@ const Login = () => {
             </h2>
             <p>It is enjoy and fun time.</p>
           </div>
-          <div className="card md:w-2/5 shadow-2xl">
+          <div className="card bg-[#FFFFFF] md:w-3/6 shadow-2xl rounded">
             <div className="px-9 pt-5">
               <h2 className="text-2xl font-bold text-[#2d545e]">Welcome Back</h2>
             </div>

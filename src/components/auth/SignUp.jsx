@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useHttp } from "../../hooks/useHttp";
 import { HTTP_METHOD } from "../../services/utils";
 import logo from "./../../../public/logo.png";
+import { HttpStatusCode } from "axios";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const signupForm = event.target;
@@ -17,17 +20,53 @@ const SignUp = () => {
     };
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const respose = await useHttp(
+    const response = await useHttp(
       "http://localhost:5001/api/auth/signup",
       HTTP_METHOD.POST,
       user
     );
+
+    const data = response.data;
+
+    if (response.status != HttpStatusCode.Ok || !data.success) return;
+
+    // const url = process.env.OTP_URL || "https://bulksmsbd.net/api/smsapi";
+    // const ApiKey = process.env.OTP_API_KEY ?? "9c2A8z1cAuUcAuBi3ito";
+    // const SenderId = process.env.OTP_SENDER_ID ?? "8809617618737";
+
+    const url = "https://bulksmsbd.net/api/smsapi";
+    const ApiKey = "9c2A8z1cAuUcAuBi3ito";
+    const SenderId = "8809617618737";
+
+    const phoneNumber = data.result.phoneOrEmail;
+
+    const randomNum = Math.random() * 9000;
+    const otp = Math.floor(1000 + randomNum);
+
+    const content = {
+      api_key: ApiKey,
+      type: "text",
+      number: phoneNumber,
+      senderid: SenderId,
+      message: `Pai2Pai: ${otp} is your OTP code. Please use within 5 mins.\n{otpRequest.Signature}`,
+    };
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    // const otpSendRes = await useHttp(url, HTTP_METHOD.POST, content);
+
+    // if (
+    //   otpSendRes.status != HttpStatusCode.Ok ||
+    //   otpSendRes.data.response_code !== HttpStatusCode.Accepted
+    // )
+    //   return;
+
+    navigate("/signup-conform", { replace: true });
   };
 
   return (
-    <div className="bg-base-200 min-h-screen">
+    <div className="bg-[#F2F4F7] min-h-screen">
       <div>
-        <div className="w-[300px] mx-auto flex justify-center items-center pt-5">
+        <div className="w-[300px] mx-auto flex justify-center items-center py-5">
           <div className="h-20 w-20 -ml-5">
             <img className="h-full w-full" src={logo} alt="" />
           </div>
@@ -39,9 +78,9 @@ const SignUp = () => {
           </div>
         </div>
         <div className="hero">
-          <div className="hero-content shadow-2xl w-full md:w-2/6 flex-col lg:flex-row-reverse rounded">
+          <div className="hero-content bg-[#FFFFFF] shadow-2xl w-full md:w-2/6 flex-col lg:flex-row-reverse rounded">
             <div className="card w-full">
-              <div className="pl-9 pt-5">
+              <div className="pl-9 pt-2">
                 <h2 className="text-2xl font-bold text-[#2d545e]">Sign Up</h2>
                 <p>It is esay and secure</p>
               </div>
@@ -108,4 +147,5 @@ const SignUp = () => {
     </div>
   );
 };
+
 export default SignUp;

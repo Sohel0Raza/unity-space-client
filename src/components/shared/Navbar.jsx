@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { IoMdSettings } from "react-icons/io";
-import { FaMoon, } from "react-icons/fa";
-import { IoLogOut } from "react-icons/io5";
+import { FaHome, FaMoon } from "react-icons/fa";
 import { CiHome, CiUser, CiVideoOn } from "react-icons/ci";
 import { PiMessengerLogoThin } from "react-icons/pi";
+import { RiLogoutBoxRFill } from "react-icons/ri";
 
 const Navbar = () => {
   const navItem = (
@@ -40,15 +40,18 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
-        to="/use"
-        className={({ isActive }) => (isActive ? "active" : "default")}
+        to="/messenger"
+        className={({ isActive }) =>
+          `${isActive ? "active" : "default"} tooltip tooltip-bottom`
+        }
+        data-tip="Messenger"
       >
         <PiMessengerLogoThin />
       </NavLink>
-    </>
+      </>
   );
   return (
-    <div className="navbar p-0 bg-base-100">
+    <div className="navbar p-0 bg-base-100 shadow-lg">
       <div className="navbar-start">
         <div className="flex items-center pl-2 md:pl-5">
           <div className="h-14 w-14">
@@ -102,8 +105,8 @@ const Navbar = () => {
               <FaMoon className="text-3xl p-1 bg-slate-300 rounded-full" />
               <h4 className="text-lg">Display Dark Mood</h4>
             </div>
-            <div className="p-5 flex items-center space-x-4">
-              <IoLogOut className="text-3xl p-1 bg-slate-300 rounded-full" />
+            <div className="p-5 flex items-center text-center space-x-4">
+              <RiLogoutBoxRFill className="text-3xl p-1 bg-slate-300 rounded-full" />
               <h4 className="text-lg">Logout</h4>
             </div>
           </div>
