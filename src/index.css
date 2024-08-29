@@ -5,9 +5,16 @@
 body {
   font-family: "Lato", sans-serif;
 }
+
+.active{
+  @apply text-[#fd38fd] transition-colors duration-500 ease-linear
+}
+.default{
+  @apply text-[#6a7581]
+}
 .btn-primary {
-  @apply border-0 bg-[#2d545e] py-2 active:scale-90 rounded-sm hover:text-gray-400 shadow-[#12343b] shadow-inner hover:bg-[#1f424b] hover:transition-all hover:duration-500 hover:ease-linear;
+  @apply  bg-[#b832b8] py-2 text-white active:scale-90 rounded-sm font-semibold text-lg
 }
 .myInput {
-  @apply border-[1px] border-gray-200 outline-0 p-2 focus:border-[1px]  focus:border-[#000] focus:shadow-none rounded-sm focus:bg-slate-100;
+  @apply border-[1px] border-gray-200 outline-0 p-2 focus:border-[1px] focus:border-gray-500 focus:shadow-none rounded-sm focus:bg-slate-100;
 }

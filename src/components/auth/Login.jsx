@@ -9,14 +9,14 @@ const Login = () => {
             <div className="h-40 w-40 mx-auto">
               <img className="h-full w-full" src={logo} alt="" />
             </div>
-            <h2 className="text-3xl -mt-5 font-bold text-[#dd443f]">
+            <h2 className="text-3xl -mt-5 font-bold text-[#2d545e] uppercase">
               Unity Space
             </h2>
             <p>It is enjoy and fun time.</p>
           </div>
           <div className="card md:w-2/5 shadow-2xl">
             <div className="px-9 pt-5">
-              <h2 className="text-2xl font-bold text-[#dd903f]">Welcome Back</h2>
+              <h2 className="text-2xl font-bold text-[#2d545e]">Welcome Back</h2>
             </div>
             <form className="card-body space-y-4 ">
               <div className="form-control">
@@ -42,7 +42,7 @@ const Login = () => {
                 <p>
                   Do not have an account?
                   <Link to="/signUp">
-                    <span className="text-[#dd903f] font-semibold ml-2">
+                    <span className="text-[#2d545e] font-semibold ml-2">
                       Sign Up
                     </span>
                   </Link>
