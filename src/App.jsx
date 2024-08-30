@@ -4,10 +4,10 @@ import Navbar from "./components/shared/Navbar";
 export const App = () => {
   const location = useLocation();
   const noheader =
-    location.pathname.includes("login") || location.pathname.includes("signUp");
+    location.pathname.includes("login") || location.pathname.includes("signUp") || location.pathname.includes("signup-conform");
   return (
     <>
-      <div>
+      <div className="h-screen">
         {noheader || <Navbar />}
         <Outlet />
       </div>

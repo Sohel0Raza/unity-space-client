@@ -6,4 +6,6 @@ const HTTP_METHOD = Object.freeze({
   DELETE: "DELETE",
 });
 
-export { HTTP_METHOD };
+const JWT_TOKEN_KEY = "token";
+
+export { HTTP_METHOD, JWT_TOKEN_KEY };

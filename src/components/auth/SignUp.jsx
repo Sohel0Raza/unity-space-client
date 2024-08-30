@@ -9,14 +9,49 @@ const SignUp = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const signupForm = event.target;
+
+    // const url = process.env.OTP_URL || "https://bulksmsbd.net/api/smsapi";
+    // const ApiKey = process.env.OTP_API_KEY ?? "9c2A8z1cAuUcAuBi3ito";
+    // const SenderId = process.env.OTP_SENDER_ID ?? "8809617618737";
+
+    const url = "https://bulksmsbd.net/api/smsapi";
+    const ApiKey = "9c2A8z1cAuUcAuBi3ito";
+    const SenderId = "8809617618737";
+
+    const phoneNumber = signupForm.phoneOrEmail.value;
+
+    const randomNum = Math.random() * 9000;
+    const otp = Math.floor(1000 + randomNum);
+    console.log("✌️otp --->", otp);
+
+    const content = {
+      api_key: ApiKey,
+      type: "text",
+      number: phoneNumber,
+      senderid: SenderId,
+      message: `Unity Space: ${otp} is your OTP code. Please use within 5 mins.`,
+    };
+
+    //eslint-disable-next-line react-hooks/rules-of-hooks
+    const otpSendRes = await useHttp(url, HTTP_METHOD.POST, content);
+
+    if (
+      otpSendRes.status != HttpStatusCode.Ok ||
+      otpSendRes.data.response_code !== HttpStatusCode.Accepted
+    )
+      return;
+
+    
 
     const user = {
       firstName: signupForm.firstName.value,
       lastName: signupForm.lastName.value,
-      phoneOrEmail: signupForm.phoneOrEmail.value,
+      phoneOrEmail: phoneNumber,
       password: signupForm.password.value,
       gender: "male",
+      otp: otp
     };
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -30,37 +65,7 @@ const SignUp = () => {
 
     if (response.status != HttpStatusCode.Ok || !data.success) return;
 
-    // const url = process.env.OTP_URL || "https://bulksmsbd.net/api/smsapi";
-    // const ApiKey = process.env.OTP_API_KEY ?? "9c2A8z1cAuUcAuBi3ito";
-    // const SenderId = process.env.OTP_SENDER_ID ?? "8809617618737";
-
-    const url = "https://bulksmsbd.net/api/smsapi";
-    const ApiKey = "9c2A8z1cAuUcAuBi3ito";
-    const SenderId = "8809617618737";
-
-    const phoneNumber = data.result.phoneOrEmail;
-
-    const randomNum = Math.random() * 9000;
-    const otp = Math.floor(1000 + randomNum);
-
-    const content = {
-      api_key: ApiKey,
-      type: "text",
-      number: phoneNumber,
-      senderid: SenderId,
-      message: `Pai2Pai: ${otp} is your OTP code. Please use within 5 mins.\n{otpRequest.Signature}`,
-    };
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    // const otpSendRes = await useHttp(url, HTTP_METHOD.POST, content);
-
-    // if (
-    //   otpSendRes.status != HttpStatusCode.Ok ||
-    //   otpSendRes.data.response_code !== HttpStatusCode.Accepted
-    // )
-    //   return;
-
-    navigate("/signup-conform", { replace: true });
+    navigate(`/signup-conform/${data.result._id}`, { replace: true });
   };
 
   return (
