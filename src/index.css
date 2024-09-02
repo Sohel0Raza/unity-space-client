@@ -21,5 +21,9 @@ body {
 }
 
 .textGradient {
-@apply bg-gradient-to-r from-[#3004f3] to-[#f804f8] inline-block text-transparent bg-clip-text
+@apply bg-gradient-to-r from-[#3b7ddf] to-[#c006c0] inline-block text-transparent bg-clip-text
+}
+
+.navLeft{
+  @apply p-2 flex items-center space-x-3 hover:bg-[#E4E6E9] rounded;
 }

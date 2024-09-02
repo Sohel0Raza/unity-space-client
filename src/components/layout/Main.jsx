@@ -1,13 +1,16 @@
 import Navleft from "../home/homeNavLeft/Navleft";
+import Story from "../home/story/Story";
 
 const Main = () => {
   return (
     <div className="grid grid-cols-4">
       <div>
-        <Navleft/>
+        <Navleft />
       </div>
-      <div className="col-span-2">
-        <h3 className="text-2xl">content</h3>
+      <div className="col-span-2 m-10">
+        <div>
+          <Story />
+        </div>
       </div>
       <div className="">
         <h3 className="text-2xl">nav right</h3>
