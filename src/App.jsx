@@ -6,11 +6,11 @@ export const App = () => {
   const noheader =
     location.pathname.includes("login") || location.pathname.includes("signUp") || location.pathname.includes("signup-conform");
   return (
-    <>
-      <div className="h-screen">
+    <div className="bg-[#F0F2F5]">
+      <div className="h-screen bg-[#F0F2F5]">
         {noheader || <Navbar />}
         <Outlet />
       </div>
-    </>
+    </div>
   );
 };

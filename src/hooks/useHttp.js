@@ -1,7 +1,8 @@
 import axios from "axios";
 import { HTTP_METHOD } from "../services/utils";
 
-export const useHttp = (url, method, data) => {
+export const 
+useHttp = (url, method, data) => {
   switch (method) {
     case HTTP_METHOD.GET:
       return axios.get(url);

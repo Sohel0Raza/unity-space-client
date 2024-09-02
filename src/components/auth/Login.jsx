@@ -3,7 +3,7 @@ import logo from "./../../../public/logo.png";
 const Login = () => {
   return (
     <>
-      <div className="hero bg-[#F2F4F7] min-h-screen">
+      <div className="hero min-h-screen">
         <div className="hero-content w-full md:w-8/12 flex-col md:flex-row justify-around">
           <div className="md:w-1/2 text-center">
             <div className="h-40 w-40 mx-auto">

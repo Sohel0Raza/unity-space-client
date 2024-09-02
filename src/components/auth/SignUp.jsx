@@ -1,98 +1,109 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useHttp } from "../../hooks/useHttp";
-import { HTTP_METHOD } from "../../services/utils";
+import { checkInputType, HTTP_METHOD, notify } from "../../services/utils";
 import logo from "./../../../public/logo.png";
 import { HttpStatusCode } from "axios";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
+
+
   const navigate = useNavigate();
   const [input, setInput] = useState("");
-  const [error, setError] = useState("");
-  const [inputType, setInputType] = useState(null);
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^(?:\+88|88)?01[3-9]\d{8}$/;
-
-  const checkInputType = (input) => {
-    if (emailRegex.test(input)) {
-      return "email";
-    } else if (phoneRegex.test(input)) {
-      return "phone";
-    } else {
-      return "invalid";
-    }
-  };
 
   const handleChange = (e) => {
     const value = e.target.value;
     setInput(value);
-
-    const type = checkInputType(value);
-    setInputType(type);
-
-    if (type === "invalid") {
-      setError("Please enter a valid email address or phone number.");
-    } else {
-      setError("");
-    }
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    let otp = "";
+
     const signupForm = event.target;
 
-    const url = import.meta.env.OTP_URL;
-    const ApiKey = import.meta.env.OTP_API_KEY;
-    const SenderId = import.meta.env.OTP_SENDER_ID;
+    const url = import.meta.env.VITE_OTP_URL;
+    const ApiKey = import.meta.env.VITE_OTP_API_KEY;
+    const SenderId = import.meta.env.VITE_OTP_SENDER_ID;
 
-    const phoneNumber = input;
+    const type = checkInputType(input);
 
-    const randomNum = Math.random() * 9000;
-    const otp = Math.floor(1000 + randomNum);
-
-    const content = {
-      api_key: ApiKey,
-      type: "text",
-      number: phoneNumber,
-      senderid: SenderId,
-      message: `Unity Space: ${otp} is your OTP code. Please use within 5 mins.`,
-    };
-
-    //eslint-disable-next-line react-hooks/rules-of-hooks
-    const otpSendRes = await useHttp(url, HTTP_METHOD.POST, content);
-
-    if (
-      otpSendRes.status != HttpStatusCode.Ok ||
-      otpSendRes.data.response_code !== HttpStatusCode.Accepted
-    )
+    if (type === "invalid") {
+      notify("Please enter a valid email address or phone number");
       return;
+    }
 
-    const user = {
-      firstName: signupForm.firstName.value,
-      lastName: signupForm.lastName.value,
-      phoneOrEmail: phoneNumber,
-      password: signupForm.password.value,
-      gender: "male",
-      otp: otp,
-    };
+    if (type === "email") {
+      console.log("Email submission is currently not handled.");
+      return;
+    }
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const response = await useHttp(
-      "http://localhost:5001/api/auth/signup",
-      HTTP_METHOD.POST,
-      user
-    );
+    if (type === "phone") {
+      try {
+        const phoneNumber = input;
+        const randomNum = Math.random() * 9000;
+        otp = Math.floor(1000 + randomNum);
 
-    const data = response.data;
+        // const content = {
+        //   api_key: ApiKey,
+        //   type: "text",
+        //   number: phoneNumber,
+        //   senderid: SenderId,
+        //   message: `Unity Space: ${otp} is your OTP code. Please use within 5 mins.`,
+        // };
 
-    if (response.status != HttpStatusCode.Ok || !data.success) return;
+        // const otpSendRes = await useHttp(url, HTTP_METHOD.POST, content);
 
-    navigate(`/signup-conform/${data.result._id}`, { replace: true });
+        // if (
+        //   otpSendRes.status !== HttpStatusCode.Ok ||
+        //   otpSendRes.data.response_code !== HttpStatusCode.Accepted
+        // ) {
+        //   notify("Failed to send OTP");
+        //   return;
+        // }
+      } catch (error) {
+        notify(error.message);
+        return;
+      }
+    }
+
+    try {
+      const user = {
+        firstName: signupForm.firstName.value,
+        lastName: signupForm.lastName.value,
+        phoneOrEmail: input,
+        password: signupForm.password.value,
+        gender: "male",
+        otp: otp,
+      };
+
+      const response = await useHttp(
+        "http://localhost:5001/api/auth/signup",
+        HTTP_METHOD.POST,
+        user
+      );
+      console.log('✌️response --->', response);
+
+      const data = response.data;
+
+      if (response.status !== HttpStatusCode.Ok || !data.success) {
+        notify("Failed to sign up:");
+        return;
+      }
+
+      navigate(`/signup-conform/${data.result._id}`, { replace: true });
+    } catch (error) {
+      notify(error?.response?.data?.message ?? error.message);
+    }
   };
 
   return (
-    <div className="bg-[#F2F4F7] min-h-screen ">
+    <div className=" min-h-screen ">
+    <ToastContainer stacked />
       <div>
         <div className="w-[300px] mx-auto flex justify-center items-center py-5">
           <div className="h-20 w-20 -ml-5">
@@ -143,13 +154,14 @@ const SignUp = () => {
                     value={input}
                     onChange={handleChange}
                   />
-                  {error && (
-                    <p className="text-white text-sm p-2 mt-2 md:mt-0
-                     bg-[#6e2c2c] md:absolute md:top-[163px] md:-left-[320px] ">
-
+                  {/* {error && (
+                    <p
+                      className="text-white text-sm p-2 mt-2 md:mt-0
+                     bg-[#6e2c2c] md:absolute md:top-[163px] md:-left-[320px] "
+                    >
                       {error}
                     </p>
-                  )}
+                  )} */}
                 </div>
                 <div className="form-control">
                   <input

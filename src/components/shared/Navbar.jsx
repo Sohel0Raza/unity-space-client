@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { IoMdSettings } from "react-icons/io";
-import { FaHome, FaMoon } from "react-icons/fa";
+import { FaMoon } from "react-icons/fa";
 import { CiHome, CiUser, CiVideoOn } from "react-icons/ci";
 import { PiMessengerLogoThin } from "react-icons/pi";
 import { RiLogoutBoxRFill } from "react-icons/ri";
@@ -48,10 +48,10 @@ const Navbar = () => {
       >
         <PiMessengerLogoThin />
       </NavLink>
-      </>
+    </>
   );
   return (
-    <div className="navbar p-0 bg-base-100 shadow-lg">
+    <div className="navbar p-0 bg-[#fff] shadow-lg">
       <div className="navbar-start">
         <div className="flex items-center pl-2 md:pl-5">
           <div className="h-14 w-14">
@@ -95,20 +95,26 @@ const Navbar = () => {
                   src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                 />
               </div>
-              <h2 className="text-2xl font-medium">Sohel</h2>
+              <h2 className="text-xl font-semibold">Sohel</h2>
             </div>
-            <div className="p-5 flex items-center space-x-4">
-              <IoMdSettings className="text-3xl p-1 bg-slate-300 rounded-full" />
-              <h4 className="text-lg">Settings & privacy</h4>
-            </div>
-            <div className="p-5 flex items-center space-x-4">
-              <FaMoon className="text-3xl p-1 bg-slate-300 rounded-full" />
-              <h4 className="text-lg">Display Dark Mood</h4>
-            </div>
-            <div className="p-5 flex items-center text-center space-x-4">
-              <RiLogoutBoxRFill className="text-3xl p-1 bg-slate-300 rounded-full" />
-              <h4 className="text-lg">Logout</h4>
-            </div>
+            <Link>
+              <div className="p-3 flex items-center space-x-4 hover:bg-[#F2F4F7] mt-2">
+                <IoMdSettings className="text-3xl p-1 bg-slate-300 rounded-full" />
+                <h4 className="text-lg">Settings & privacy</h4>
+              </div>
+            </Link>
+            <Link>
+              <div className="p-3 flex items-center space-x-4 hover:bg-[#F2F4F7] mt-2">
+                <FaMoon className="text-3xl p-1 bg-slate-300 rounded-full" />
+                <h4 className="text-lg">Display Dark Mood</h4>
+              </div>
+            </Link>
+            <Link>
+              <div className="p-3 flex items-center text-center space-x-4 hover:bg-[#F2F4F7] mt-2">
+                <RiLogoutBoxRFill className="text-3xl p-1 bg-slate-300 rounded-full" />
+                <h4 className="text-lg">Logout</h4>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

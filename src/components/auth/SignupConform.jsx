@@ -2,9 +2,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useHttp } from "../../hooks/useHttp";
-import { HTTP_METHOD, JWT_TOKEN_KEY } from "../../services/utils";
+import { HTTP_METHOD, JWT_TOKEN_KEY, notify } from "../../services/utils";
 import { HttpStatusCode } from "axios";
 import { useData } from "../../hooks/useData";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const SignupConform = () => {
   const [users, setUsers] = useState();
@@ -20,35 +23,43 @@ const SignupConform = () => {
         const users = await useData("http://localhost:5001/api/auth/users");
         setUsers(users);
       } catch (error) {
-        console.log(error);
+        notify(error.message);
       }
     };
 
     fetchData();
   }, []);
-  const handelVerifyOtp = async () => {
-    const otp = nameRef.current.value;
+  const handleVerifyOtp = async () => {
+    try {
+      const otp = nameRef.current.value;
 
-    const response = await useHttp(
-      "http://localhost:5001/api/auth/otpVerify",
-      HTTP_METHOD.POST,
-      {
-        userId: id,
-        otp,
+      const response = await useHttp(
+        "http://localhost:5001/api/auth/otpVerify",
+        HTTP_METHOD.POST,
+        {
+          userId: id,
+          otp,
+        }
+      );
+
+      if (response.status !== HttpStatusCode.Ok || !response.data.success) {
+        notify(response?.data?.message ?? "OTP verification failed");
+        return;
       }
-    );
 
-    if (response.status != HttpStatusCode.Ok || !response.data.success) return;
-
-    localStorage.setItem(JWT_TOKEN_KEY, response.data.token);
-
-    navigate("/", { replace: true });
+      localStorage.setItem(JWT_TOKEN_KEY, response.data.token);
+   
+      navigate("/", { replace: true });
+    } catch (error) {
+      notify(error?.response?.data?.message ?? error.message);
+    }
   };
 
   return (
-    <div className="bg-[#F2F4F7]">
+    <div>
+      <ToastContainer stacked></ToastContainer>
       <div className="h-screen flex justify-center items-center">
-        <div className="card bg-white w-5/12 shadow-xl rounded">
+        <div className="card bg-white mx-10 md:w-5/12 shadow-xl rounded">
           <div className="card-body">
             <h2 className="card-title pb-2">Enter the code from your Phone!</h2>
             <p className="pb-1">
@@ -65,7 +76,7 @@ const SignupConform = () => {
               Resend code
             </button>
             <div className="card-actions justify-end">
-              <button className=" btn-primary px-4" onClick={handelVerifyOtp}>
+              <button className=" btn-primary px-4" onClick={handleVerifyOtp}>
                 Continue
               </button>
             </div>

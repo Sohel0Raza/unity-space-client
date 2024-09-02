@@ -1,20 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Roboto", sans-serif;
+  color: #2d545e;
 }
 
-.active{
-  @apply text-[#fd38fd] transition-colors duration-500 ease-linear
+.active {
+  @apply text-[#fd38fd] transition-colors duration-500 ease-linear;
 }
-.default{
-  @apply text-[#6a7581]
+.default {
+  @apply text-[#6a7581];
 }
 .btn-primary {
-  @apply  bg-[#b832b8] py-2 text-white active:scale-90 rounded-sm font-semibold text-lg
+  @apply bg-[#b832b8] py-2 text-white active:scale-90 rounded-sm font-semibold text-lg;
 }
 .myInput {
   @apply border-[1px] border-gray-200 outline-0 p-2 focus:border-[1px] focus:border-gray-500 focus:shadow-none rounded-sm focus:bg-slate-100;
+}
+
+.textGradient {
+@apply bg-gradient-to-r from-[#3004f3] to-[#f804f8] inline-block text-transparent bg-clip-text
 }
