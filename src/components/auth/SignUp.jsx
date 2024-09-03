@@ -3,13 +3,13 @@ import { useHttp } from "../../hooks/useHttp";
 import { checkInputType, HTTP_METHOD, notify } from "../../services/utils";
 import logo from "./../../../public/logo.png";
 import { HttpStatusCode } from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "../../hooks/useAuth";
 
 const SignUp = () => {
-
 
   const navigate = useNavigate();
   const [input, setInput] = useState("");
@@ -18,6 +18,13 @@ const SignUp = () => {
     const value = e.target.value;
     setInput(value);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    if (useAuth()) {
+      navigate("/", { replace: true });
+    }
+  }, [useAuth()]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

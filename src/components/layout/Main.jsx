@@ -1,5 +1,7 @@
+import CreatePost from "../createPost/createPost";
 import Navleft from "../home/homeNavLeft/Navleft";
 import Story from "../home/story/Story";
+import Post from "../post/Post";
 
 const Main = () => {
   return (
@@ -11,9 +13,12 @@ const Main = () => {
         <div>
           <Story />
         </div>
+        <div className="w-10/12 mx-auto mt-7">
+          <CreatePost />
+          <Post/>
+        </div>
       </div>
       <div className="">
-        <h3 className="text-2xl">nav right</h3>
       </div>
     </div>
   );

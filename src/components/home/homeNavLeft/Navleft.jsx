@@ -8,7 +8,7 @@ const Navleft = () => {
           <img
             className="rounded-full"
             alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+            src="https://i.ibb.co/sPZPKk0/416098441-1568179284017697-8516683293212790037-n.jpg"
           />
         </div>
         <h2 className="text-base font-semibold">Sohel</h2>

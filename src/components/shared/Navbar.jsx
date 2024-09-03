@@ -12,7 +12,7 @@ const Navbar = () => {
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `${isActive ? "active" : "default"} tooltip tooltip-bottom`
+          `${isActive ? "active" : "default"} tooltip tooltip-bottom tooltip-secondary`
         }
         data-tip="Home"
       >
@@ -22,7 +22,7 @@ const Navbar = () => {
       <NavLink
         to="/friend"
         className={({ isActive }) =>
-          `${isActive ? "active" : "default"} tooltip tooltip-bottom`
+          `${isActive ? "active" : "default"} tooltip tooltip-bottom tooltip-secondary`
         }
         data-tip="Friend"
       >
@@ -32,7 +32,7 @@ const Navbar = () => {
       <NavLink
         to="/video"
         className={({ isActive }) =>
-          `${isActive ? "active" : "default"} tooltip tooltip-bottom`
+          `${isActive ? "active" : "default"} tooltip tooltip-bottom tooltip-secondary`
         }
         data-tip="Video"
       >
@@ -42,7 +42,7 @@ const Navbar = () => {
       <NavLink
         to="/messenger"
         className={({ isActive }) =>
-          `${isActive ? "active" : "default"} tooltip tooltip-bottom`
+          `${isActive ? "active" : "default"} tooltip tooltip-bottom tooltip-secondary`
         }
         data-tip="Messenger"
       >
@@ -57,7 +57,7 @@ const Navbar = () => {
           <div className="h-14 w-14">
             <img className="h-full w-full" src={logo} alt="logo" />
           </div>
-          <h2 className="text-xl font-bold text-[#2d545e] hidden md:block uppercase ">
+          <h2 className="text-xl font-bold text-[#2d545e] uppercase ">
             Unity Space
           </h2>
         </div>
@@ -69,7 +69,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end pr-2 md:pr-5">
         <div className="dropdown dropdown-end">
-          <div className="tooltip tooltip-bottom" data-tip="Account">
+          <div className="tooltip tooltip-bottom tooltip-secondary" data-tip="Account">
             <div
               tabIndex={0}
               role="button"
@@ -78,7 +78,7 @@ const Navbar = () => {
               <div className="w-10 rounded-full">
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  src="https://i.ibb.co/sPZPKk0/416098441-1568179284017697-8516683293212790037-n.jpg"
                 />
               </div>
             </div>
@@ -92,25 +92,25 @@ const Navbar = () => {
                 <img
                   className="rounded-full"
                   alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  src="https://i.ibb.co/sPZPKk0/416098441-1568179284017697-8516683293212790037-n.jpg"
                 />
               </div>
               <h2 className="text-xl font-semibold">Sohel</h2>
             </div>
             <Link>
-              <div className="p-3 flex items-center space-x-4 hover:bg-[#F2F4F7] mt-2">
+              <div className="p-3 flex items-center space-x-4 hover:bg-info mt-2">
                 <IoMdSettings className="text-3xl p-1 bg-slate-300 rounded-full" />
                 <h4 className="text-lg">Settings & privacy</h4>
               </div>
             </Link>
             <Link>
-              <div className="p-3 flex items-center space-x-4 hover:bg-[#F2F4F7] mt-2">
+              <div className="p-3 flex items-center space-x-4 hover:bg-info mt-2">
                 <FaMoon className="text-3xl p-1 bg-slate-300 rounded-full" />
                 <h4 className="text-lg">Display Dark Mood</h4>
               </div>
             </Link>
             <Link>
-              <div className="p-3 flex items-center text-center space-x-4 hover:bg-[#F2F4F7] mt-2">
+              <div className="p-3 flex items-center text-center space-x-4 hover:bg-info mt-2">
                 <RiLogoutBoxRFill className="text-3xl p-1 bg-slate-300 rounded-full" />
                 <h4 className="text-lg">Logout</h4>
               </div>

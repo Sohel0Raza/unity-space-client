@@ -4,6 +4,7 @@ import SignUp from "../components/auth//SignUp";
 import { App } from "../App";
 import Main from "../components/layout/Main";
 import SignupConform from "../components/auth/SignupConform";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -13,11 +14,19 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Main />,
+        element: (
+          <PrivateRoute>
+            <Main />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/signup-conform/:id",
-        element: <SignupConform />,
+        element: (
+          <PrivateRoute>
+            <SignupConform />,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

@@ -4,13 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useHttp } from "../../hooks/useHttp";
 import { HTTP_METHOD, JWT_TOKEN_KEY, notify } from "../../services/utils";
 import { HttpStatusCode } from "axios";
-import { useData } from "../../hooks/useData";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "../../hooks/useAuth";
 
 const SignupConform = () => {
-  const [users, setUsers] = useState();
+  const [user, setUser] = useState();
   const navigate = useNavigate();
 
   const { id } = useParams();
@@ -20,15 +20,26 @@ const SignupConform = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const users = await useData("http://localhost:5001/api/auth/users");
-        setUsers(users);
+        const user = await useHttp(
+          `http://localhost:5001/api/auth/users/${id}`,
+          HTTP_METHOD.GET
+        );
+        setUser(user);
       } catch (error) {
         notify(error.message);
       }
     };
 
     fetchData();
-  }, []);
+  }, [id]);
+  
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    if (useAuth()) {
+      navigate("/", { replace: true });
+    }
+  }, [useAuth()]);
+
   const handleVerifyOtp = async () => {
     try {
       const otp = nameRef.current.value;
@@ -48,7 +59,7 @@ const SignupConform = () => {
       }
 
       localStorage.setItem(JWT_TOKEN_KEY, response.data.token);
-   
+
       navigate("/", { replace: true });
     } catch (error) {
       notify(error?.response?.data?.message ?? error.message);
