@@ -1,5 +1,4 @@
-const Post = () => {
-  
+const PostCard = () => {
   return (
     <div className="my-5 bg-white rounded-xl">
       <div className="flex items-center space-x-3 px-5 py-4">
@@ -11,10 +10,10 @@ const Post = () => {
           />
         </div>
         <div>
-        <h2 className="text-base font-semibold">Sohel</h2>
+          <h2 className="text-base font-semibold">Sohel</h2>
         </div>
       </div>
     </div>
   );
 };
-export default Post;
+export default PostCard;

@@ -1,7 +1,7 @@
-import CreatePost from "../createPost/createPost";
 import Navleft from "../home/homeNavLeft/Navleft";
 import Story from "../home/story/Story";
-import Post from "../post/Post";
+import AddPost from "../post/AddPost";
+import PostCard from "../post/PostCard";
 
 const Main = () => {
   return (
@@ -14,12 +14,11 @@ const Main = () => {
           <Story />
         </div>
         <div className="w-10/12 mx-auto mt-7">
-          <CreatePost />
-          <Post/>
+          <AddPost />
+          <PostCard />
         </div>
       </div>
-      <div className="">
-      </div>
+      <div className=""></div>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useHttp } from "../../hooks/useHttp";
@@ -32,10 +31,9 @@ const SignupConform = () => {
 
     fetchData();
   }, [id]);
-  
+
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    if (useAuth()) {
+       if (useAuth()) {
       navigate("/", { replace: true });
     }
   }, [useAuth()]);

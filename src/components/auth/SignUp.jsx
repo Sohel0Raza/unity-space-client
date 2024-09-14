@@ -20,8 +20,7 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    if (useAuth()) {
+       if (useAuth()) {
       navigate("/", { replace: true });
     }
   }, [useAuth()]);

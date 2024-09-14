@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const CreatePost = () => {
+const AddPost = () => {
   return (
     <div className="bg-white rounded-lg shadow-xl">
       <div className="flex items-center space-x-2 px-5 py-4">
@@ -33,4 +33,4 @@ const CreatePost = () => {
     </div>
   );
 };
-export default CreatePost;
+export default AddPost;

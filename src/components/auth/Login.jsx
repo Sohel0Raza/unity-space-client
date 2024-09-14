@@ -17,8 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    if (useAuth()) {
+       if (useAuth()) {
       navigate("/", { replace: true });
     }
   }, [useAuth()]);
@@ -41,7 +40,6 @@ const Login = () => {
         password,
       };
 
-      // eslint-disable-next-line react-hooks/rules-of-hooks
       const response = await useHttp(
         "http://localhost:5001/api/auth/login",
         HTTP_METHOD.POST,

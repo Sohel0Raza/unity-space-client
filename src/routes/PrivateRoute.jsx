@@ -2,7 +2,6 @@ import { jwtDecode } from "jwt-decode";
 import { Navigate, useLocation } from "react-router-dom";
 import { JWT_TOKEN_KEY } from "../services/utils";
 
-// eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
