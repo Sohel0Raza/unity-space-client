@@ -92,7 +92,6 @@ const SignUp = () => {
         HTTP_METHOD.POST,
         user
       );
-      console.log('✌️response --->', response);
 
       const data = response.data;
 
