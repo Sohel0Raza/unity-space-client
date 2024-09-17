@@ -61,6 +61,36 @@ const Navleft = () => {
           <h2 className="text-base font-semibold">Saves</h2>
         </div>
       </Link>
+      <Link>
+        <div className="navLeft">
+          <i className="icon-bookmark1 textGradient text-3xl"></i>
+          <h2 className="text-base font-semibold">Saves</h2>
+        </div>
+      </Link>
+      <Link>
+        <div className="navLeft">
+          <i className="icon-bookmark1 textGradient text-3xl"></i>
+          <h2 className="text-base font-semibold">Saves</h2>
+        </div>
+      </Link>
+      <Link>
+        <div className="navLeft">
+          <i className="icon-bookmark1 textGradient text-3xl"></i>
+          <h2 className="text-base font-semibold">Saves</h2>
+        </div>
+      </Link>
+      <Link>
+        <div className="navLeft">
+          <i className="icon-bookmark1 textGradient text-3xl"></i>
+          <h2 className="text-base font-semibold">Saves</h2>
+        </div>
+      </Link>
+      <Link>
+        <div className="navLeft">
+          <i className="icon-bookmark1 textGradient text-3xl"></i>
+          <h2 className="text-base font-semibold">Saves</h2>
+        </div>
+      </Link>
     </div>
   );
 };

@@ -51,7 +51,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar p-0 bg-[#fff] shadow-lg">
+    <div className="navbar fixed z-40 p-0 bg-[#fff] shadow-lg">
       <div className="navbar-start">
         <div className="flex items-center pl-2 md:pl-5">
           <div className="h-14 w-14">

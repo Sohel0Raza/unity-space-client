@@ -5,6 +5,8 @@
 body {
   font-family: "Roboto", sans-serif;
   color: #1f3a41;
+  overflow: hidden;
+  height: 100vh;
   background-color: #F0F2F5;
 }
 
@@ -28,3 +30,19 @@ body {
 .navLeft{
   @apply p-2 flex items-center space-x-3 hover:bg-info rounded;
 }
+
+
+/* scrollbar */
+.scrollbar {
+  scrollbar-width: none; 
+}
+
+.scrollbar:hover {
+  scrollbar-width: thin;
+}
+.scrollbar2 {
+  scrollbar-width: none;
+}
+
+
+

@@ -42,9 +42,20 @@ const PostCard = () => {
           />
         </div>
       </div>
-      <div>
-        <div>
-          
+      <div className="py-3">
+        <div className="flex justify-around items-center">
+          <div className="flex items-end space-x-3">
+            <i className="text-2xl icon-thumbs-o-up"></i>
+            <span className="text-lg">Like</span>
+          </div>
+          <div className="flex items-end space-x-3">
+            <i className="text-2xl icon-comment-o "></i>
+            <span className="text-lg font-medium">Comment</span>
+          </div>
+          <div className="flex items-end space-x-3">
+            <i className="text-2xl icon-share-2 "></i>
+            <span className="text-lg font-medium">Share</span>
+          </div>
         </div>
       </div>
     </div>

@@ -180,7 +180,7 @@ const SignUp = () => {
                   <input
                     type="submit"
                     value="Sign Up"
-                    className=" btn-primary"
+                    className=" btn-primary cursor-pointer"
                   />
                 </div>
                 <div>
