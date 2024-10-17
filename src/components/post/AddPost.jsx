@@ -1,6 +1,31 @@
+import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const AddPost = () => {
+  const [files, setFiles] = useState([]);
+
+  const handleFile = async (e) => {
+    e.preventDefault();
+
+    let formData = new FormData();
+    formData.append("description", e.target.description.value);
+    console.log("e.target.description.value: ", e.target.description.value);
+
+    files?.forEach((file) => {
+      formData.append("photos", file);
+    });
+
+    await axios
+      .post(`http://localhost:5001/api/posts`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        return res.data;
+      });
+  };
   return (
     <>
       <div className="bg-white rounded-lg shadow-xl">
@@ -63,15 +88,23 @@ const AddPost = () => {
               </div>
             </div>
           </div>
-          <form>
+          <form onSubmit={handleFile}>
             <textarea
-              name=""
+              name="description"
               id=""
               className="w-full focus:outline-none text-xl"
               placeholder="What is your mind?"
             ></textarea>
             <div>
-              <input type="file" name="" id="file"  className="hidden"/>
+              <input
+                type="file"
+                multiple
+                onChange={(e) => {
+                  setFiles(Object.values(e.target.files));
+                }}
+                id="file"
+                name="file"
+              />
               <div className="border-[1px]  p-1 rounded my-2 flex items-center justify-between">
                 <h4 className="text-xl pl-2">Add to your post</h4>
                 <label htmlFor="file" className="text-4xl cursor-pointer">
@@ -79,9 +112,11 @@ const AddPost = () => {
                 </label>
               </div>
             </div>
-            <div className="mt-4 btn-primary text-center cursor-pointer">
-              <input type="submit" value="Post" />
-            </div>
+            <input
+              type="submit"
+              value="Post"
+              className="btn-primary w-full mt-4  text-center cursor-pointer"
+            />
           </form>
         </div>
       </dialog>

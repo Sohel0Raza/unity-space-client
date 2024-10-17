@@ -36,10 +36,7 @@ const PostCard = () => {
             <br />
             #সীরাহ
           </p>
-          <img
-            src="https://scontent.fdac175-1.fna.fbcdn.net/v/t39.30808-6/459948232_845979704290903_859282260266311871_n.jpg?stp=dst-jpg_p526x296&_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFWuaGaLCLKenKqY5KLpae1_1GKXICkovL_UYpcgKSi8pzHAHFeBk7D8X07YJfOnMFraNW4U7bomuMIlsDIA4sq&_nc_ohc=gLtV3py38R4Q7kNvgG3UC-4&_nc_ht=scontent.fdac175-1.fna&_nc_gid=AXl91LnbMF61UjBSCgTgQyi&oh=00_AYCuxmZNFtqFV8uNyBAXa1gKMpBrGbTFD2yGK5XUKFT4mQ&oe=66EB940F"
-            alt=""
-          />
+          
         </div>
       </div>
       <div className="py-3">
