@@ -10,7 +10,6 @@ const AddPost = () => {
 
     let formData = new FormData();
     formData.append("description", e.target.description.value);
-    console.log("e.target.description.value: ", e.target.description.value);
 
     files?.forEach((file) => {
       formData.append("photos", file);

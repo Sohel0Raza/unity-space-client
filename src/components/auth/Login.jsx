@@ -13,7 +13,7 @@ import { ToastContainer } from "react-toastify";
 import { useAuth } from "../../hooks/useAuth";
 
 const Login = () => {
-  //const [phoneOrEmail, setPhoneOrEmail] = useState("");
+  const [phoneOrEmail, setPhoneOrEmail] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,10 +22,10 @@ const Login = () => {
     }
   }, [useAuth()]);
 
-  // const handleChange = (e) => {
-  //   const phoneOrEmail = e.target.value;
-  //   setPhoneOrEmail(phoneOrEmail);
-  // };
+  const handleChange = (e) => {
+    const phoneOrEmail = e.target.value;
+    setPhoneOrEmail(phoneOrEmail);
+  };
 
   const handleLoginFormSubmit = async (e) => {
     try {
@@ -34,7 +34,7 @@ const Login = () => {
       const phoneOrEmail = loginForm.phoneOrEmail.value;
       const password = loginForm.password.value;
 
-      //const type = checkInputType(phoneOrEmail);
+      const type = checkInputType(phoneOrEmail);
       const loginRequest = {
         phoneOrEmail,
         password,
@@ -53,7 +53,6 @@ const Login = () => {
       localStorage.setItem(JWT_TOKEN_KEY, response.data.token);
       navigate("/", { replace: true });
     } catch (error) {
-      console.log("✌️error --->", error);
       notify(error?.response?.data?.message ?? error.message);
     }
   };
@@ -84,7 +83,7 @@ const Login = () => {
             >
               <div className="form-control">
                 <input
-                  // onChange={handleChange}
+                  onChange={handleChange}
                   type="text"
                   name="phoneOrEmail"
                   placeholder=" phone or email"

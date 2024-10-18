@@ -21,7 +21,7 @@ export default {
 
           success: "#00ff00",
 
-          warning: "#00ff00",
+          warning: "#991B1B",
 
           error: "#ff0000",
         },

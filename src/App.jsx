@@ -6,7 +6,7 @@ export const App = () => {
   const noheader =
     location.pathname.includes("login") || location.pathname.includes("signUp") || location.pathname.includes("signup-conform");
   return (
-    <div className="bg-[#F0F2F5]">
+    <div>
       <div>
         {noheader || <Navbar />}
         <Outlet />
