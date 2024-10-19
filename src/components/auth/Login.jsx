@@ -11,30 +11,29 @@ import { useHttp } from "../../hooks/useHttp";
 import { HttpStatusCode } from "axios";
 import { ToastContainer } from "react-toastify";
 import { useAuth } from "../../hooks/useAuth";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const [phoneOrEmail, setPhoneOrEmail] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-       if (useAuth()) {
+    if (useAuth()) {
       navigate("/", { replace: true });
     }
   }, [useAuth()]);
 
-  const handleChange = (e) => {
-    const phoneOrEmail = e.target.value;
-    setPhoneOrEmail(phoneOrEmail);
-  };
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  const handleLoginFormSubmit = async (e) => {
+  const onSubmit = async (data) => {
     try {
-      e.preventDefault();
-      const loginForm = e.target;
-      const phoneOrEmail = loginForm.phoneOrEmail.value;
-      const password = loginForm.password.value;
+      const phoneOrEmail = data.phoneOrEmail;
+      const password = data.password;
 
-      const type = checkInputType(phoneOrEmail);
       const loginRequest = {
         phoneOrEmail,
         password,
@@ -78,28 +77,49 @@ const Login = () => {
               </h2>
             </div>
             <form
-              onSubmit={handleLoginFormSubmit}
+              onSubmit={handleSubmit(onSubmit)}
               className="card-body space-y-4 "
             >
-              <div className="form-control">
+              <div className="form-control relative">
                 <input
-                  onChange={handleChange}
                   type="text"
-                  name="phoneOrEmail"
-                  placeholder=" phone or email"
-                  className="myInput"
+                  {...register("phoneOrEmail", {
+                    required: true,
+                  })}
+                  placeholder="Mobile number or email address"
+                  className={`myInput ${
+                    errors.phoneOrEmail ? "border-warning" : "border-gray-200"
+                  }`}
                 />
+                {errors.phoneOrEmail && (
+                  <>
+                    <i className="icon-exclamation-circle text-warning absolute top-1/2 right-2 -translate-y-1/2"></i>
+                  </>
+                )}
               </div>
-              <div className="form-control">
+              <div className="form-control relative">
                 <input
-                  name="password"
                   type="password"
-                  placeholder="password"
-                  className="myInput"
+                  {...register("password", {
+                    required: true,
+                  })}
+                  placeholder="Inter your password"
+                  className={`myInput ${
+                    errors.password ? "border-warning" : "border-gray-200"
+                  }`}
                 />
+                {errors.password && (
+                  <>
+                    <i className="icon-exclamation-circle text-warning absolute top-1/2 right-2 -translate-y-1/2"></i>
+                  </>
+                )}
               </div>
               <div className="form-control mt-6">
-                <input type="submit" value="Login" className=" btn-primary cursor-pointer" />
+                <input
+                  type="submit"
+                  value="Login"
+                  className=" btn-primary cursor-pointer"
+                />
               </div>
               <div>
                 <p>
